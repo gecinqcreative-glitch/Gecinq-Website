@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" fill="none">
+  <!-- mark -->
+  <g stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="20" width="200" height="100" />
+    <circle cx="112" cy="120" r="68" />
+  </g>
+  <!-- wordmark -->
+  <g fill="currentColor" font-family="Helvetica, Arial, sans-serif" font-weight="500" letter-spacing="6">
+    <text x="270" y="98" font-size="74">GECINQ</text>
+    <text x="270" y="172" font-size="74">CREATIVE</text>
+  </g>
+</svg>

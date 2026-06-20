@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800">
+  <rect width="1280" height="800" fill="#EC4960"/>
+  <!-- citrus mark -->
+  <g>
+    <circle cx="340" cy="400" r="232" fill="#ffffff"/>
+    <circle cx="340" cy="400" r="200" fill="#EC4960"/>
+    <g stroke="#ffffff" stroke-width="18" stroke-linecap="round">
+      <line x1="340" y1="400" x2="340" y2="200"/>
+      <line x1="340" y1="400" x2="458" y2="238"/>
+      <line x1="340" y1="400" x2="530" y2="338"/>
+      <line x1="340" y1="400" x2="530" y2="462"/>
+      <line x1="340" y1="400" x2="458" y2="562"/>
+      <line x1="340" y1="400" x2="340" y2="600"/>
+      <line x1="340" y1="400" x2="222" y2="562"/>
+      <line x1="340" y1="400" x2="150" y2="462"/>
+      <line x1="340" y1="400" x2="150" y2="338"/>
+      <line x1="340" y1="400" x2="222" y2="238"/>
+    </g>
+    <circle cx="340" cy="400" r="50" fill="#ffffff"/>
+    <ellipse cx="402" cy="300" rx="21" ry="13" fill="#ffffff" transform="rotate(-32 402 300)"/>
+    <ellipse cx="266" cy="492" rx="21" ry="13" fill="#ffffff" transform="rotate(40 266 492)"/>
+  </g>
+  <!-- wordmark -->
+  <g fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="500" letter-spacing="-2">
+    <text x="636" y="378" font-size="128">À Pleines</text>
+    <text x="636" y="516" font-size="128">Papilles.</text>
+  </g>
+</svg>

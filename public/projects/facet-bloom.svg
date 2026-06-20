@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800">
+  <rect width="1280" height="800" fill="#0E0E0E"/>
+  <!-- spiky burst -->
+  <polygon fill="none" stroke="#ffffff" stroke-width="16" stroke-linejoin="round"
+    points="340,170 381,287 488,224 444,340 567,360 458,421 539,515 417,492 419,616 340,520 261,616 263,492 141,515 222,421 113,360 236,340 192,224 299,287"/>
+  <!-- eye: white octagon + red octagon -->
+  <polygon fill="#ffffff" points="428,436 376,488 304,488 252,436 252,364 304,312 376,312 428,364"/>
+  <polygon fill="#E5241B" points="386,419 359,446 321,446 294,419 294,381 321,354 359,354 386,381"/>
+  <!-- wordmark -->
+  <text x="715" y="300" fill="#E5241B" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="48">Creative Space</text>
+  <g fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-weight="700" letter-spacing="-2">
+    <text x="712" y="470" font-size="150">FACET</text>
+    <text x="712" y="630" font-size="150">BLOOM</text>
+  </g>
+</svg>
