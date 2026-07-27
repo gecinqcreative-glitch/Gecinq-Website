@@ -44,10 +44,12 @@ export const PROJECTS: Project[] = [
     intro:
       'Map.ch accompagne des PME suisses dans leur présence digitale : sites web, réseaux sociaux et contenus. L’objectif — une communication claire, régulière et cohérente, adaptée à chaque métier.',
     body: [
-      'Pour chaque client — comme OliMandats ou Espace Pro Piscine — on décline une identité en supports concrets : publications social media, visuels pédagogiques (« comment ça marche »), pages web et gabarits réutilisables.',
+      'Pour chaque client — OliMandats, Espace Pro Piscine, Seic, Swisspeaks… — on décline une identité en supports concrets : publications social media, visuels pédagogiques (« comment ça marche »), pages web et gabarits réutilisables.',
       'L’approche privilégie la lisibilité et la constance : un système graphique simple, des couleurs franches et des mises en page modulables, pour que la marque reste reconnaissable sur tous les canaux.',
     ],
-    gallery: [1, 2, 3, 4, 5, 6].map((n) => shot('map-ch', n)),
+    gallery: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) =>
+      shot('map-ch', n),
+    ),
     nextSlug: 'flirtyiq',
   },
   {

@@ -48,7 +48,7 @@ export default function Splash() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black transition-opacity duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`fixed inset-0 z-[130] flex flex-col items-center justify-center bg-black transition-opacity duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
         leaving ? 'pointer-events-none opacity-0' : 'opacity-100'
       }`}
       aria-hidden
@@ -57,7 +57,7 @@ export default function Splash() {
       <img
         src="/logo-white.png"
         alt="GECINQ CREATIVE"
-        className="h-32 w-auto animate-[fadeIn_1300ms_ease-out] sm:h-44 md:h-56"
+        className="h-44 w-auto animate-[fadeIn_1300ms_ease-out] sm:h-60 md:h-72"
       />
       <div className="mt-10 text-[11px] tabular-nums tracking-[0.35em] text-white/55">
         {String(pct).padStart(3, '0')}
