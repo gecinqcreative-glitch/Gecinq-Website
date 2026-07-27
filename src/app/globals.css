@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #000000;
+  --ink: #f4f4f2;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.01em; /* léger resserrage Helvetica → plus net */
+  overscroll-behavior: none;
+}
+
+/* sélection discrète */
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* grain filmique (SVG feTurbulence en data-URI), très subtil */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+/* Cache la scrollbar des ScrollControls / pages projet sans bloquer le scroll */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+* {
+  scrollbar-width: none;
+}
+
+/* petit utilitaire capitales espacées (labels) — Helvetica, comme le reste */
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* curseur personnalisé actif → on masque le curseur natif (sauf champs texte) */
+.has-cursor,
+.has-cursor a,
+.has-cursor button {
+  cursor: none;
+}
+.has-cursor input,
+.has-cursor textarea {
+  cursor: text;
+}
+
+/* fade-in du label de survol (3D) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* transition d'entrée des pages projet */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.enter {
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* apparition en STAGGER du contenu projet (fade + léger slide vertical) */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(13px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: riseIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* fondu d'entrée à chaque navigation (template.tsx) */
+@keyframes pageIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.page-fade {
+  animation: pageIn 0.45s ease-out both;
+}
+
+/* révélation de titre par mot (SplitText.tsx) */
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.split-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: splitUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes splitUp {
+  to {
+    transform: none;
+  }
+}
+
+/* révélation au scroll (Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* révélation de l'accueil en fondu, synchronisée avec la sortie du splash */
+@keyframes revealIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.splash-reveal {
+  /* fondu d'entrée de l'accueil : court délai (chevauche le splash au 1er chargement,
+     et reste un fondu propre au retour depuis une page projet). */
+  animation: revealIn 0.7s ease-out 0.2s both;
+}
