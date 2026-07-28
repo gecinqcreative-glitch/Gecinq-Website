@@ -6,6 +6,7 @@ import Splash from '@/components/ui/Splash';
 import TransitionOverlay from '@/components/ui/TransitionOverlay';
 import Chrome from '@/components/ui/Chrome';
 import Cursor from '@/components/ui/Cursor';
+import NoPullToRefresh from '@/components/ui/NoPullToRefresh';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -58,6 +59,8 @@ export default function RootLayout({
         <Chrome />
         {/* Curseur personnalisé (desktop) */}
         <Cursor />
+        {/* Renfort anti pull-to-refresh (tactile) */}
+        <NoPullToRefresh />
         {children}
       </body>
     </html>
