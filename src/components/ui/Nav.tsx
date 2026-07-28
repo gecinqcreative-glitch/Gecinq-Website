@@ -25,7 +25,7 @@ export default function Nav() {
           <img
             src="/logo-white.png"
             alt="GECINQ CREATIVE"
-            className="h-24 w-auto sm:h-28 md:h-40"
+            className="h-32 w-auto md:h-40"
           />
         </Link>
         {/* Liens desktop */}
@@ -47,7 +47,7 @@ export default function Nav() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
         aria-expanded={open}
-        className="fixed right-4 top-[30px] z-[110] flex h-11 w-11 flex-col items-center justify-center gap-[6px] sm:top-[38px] md:hidden"
+        className="fixed right-4 top-[46px] z-[110] flex h-11 w-11 flex-col items-center justify-center gap-[6px] md:hidden"
       >
         <span
           className={`block h-[2px] w-6 bg-ink transition-transform duration-300 ${

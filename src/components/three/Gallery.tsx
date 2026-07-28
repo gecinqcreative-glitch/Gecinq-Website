@@ -44,7 +44,7 @@ function Rig({ nav }: { nav: Nav }) {
       ? new THREE.Vector3(
           GALLERY.camOffset.x - 0.7,
           GALLERY.camOffset.y - 0.25,
-          GALLERY.camOffset.z + 0.6,
+          GALLERY.camOffset.z + 0.2,
         )
       : new THREE.Vector3(
           GALLERY.camOffset.x,
@@ -187,7 +187,8 @@ export default function Gallery({ onSelect }: { onSelect: SelectFn }) {
     const onTouchMove = (e: TouchEvent) => {
       if (lastY === null) return;
       const y = e.touches[0].clientY;
-      velocity.current += (lastY - y) * GALLERY.auto.touchSens;
+      // sens INVERSÉ sur tactile : glisser vers le bas = avancer dans le couloir
+      velocity.current += (y - lastY) * GALLERY.auto.touchSens;
       lastY = y;
       bump();
     };

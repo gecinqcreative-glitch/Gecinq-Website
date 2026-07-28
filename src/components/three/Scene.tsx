@@ -27,7 +27,7 @@ function ResponsiveCamera() {
     const fov =
       aspect >= 1
         ? GALLERY.fov
-        : THREE.MathUtils.clamp((GALLERY.fov / aspect) * 0.82, GALLERY.fov, 64);
+        : THREE.MathUtils.clamp((GALLERY.fov / aspect) * 0.82, GALLERY.fov, 48);
     if (Math.abs(camera.fov - fov) > 0.01) {
       camera.fov = fov;
       camera.updateProjectionMatrix();
