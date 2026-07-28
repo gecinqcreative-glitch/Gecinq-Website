@@ -52,7 +52,7 @@ export default function Scene() {
 
   return (
     <div
-      className="fixed inset-0 bg-paper"
+      className="fixed inset-0 touch-none bg-paper"
       style={{ pointerEvents: active ? 'none' : 'auto' }}
     >
       <Canvas
