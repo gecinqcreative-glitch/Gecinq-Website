@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { PROJECTS, getProject } from '@/data/projects';
 import ProjectHero from '@/components/ui/ProjectHero';
+import ProjectGallery from '@/components/ui/ProjectGallery';
 import Reveal from '@/components/ui/Reveal';
 import Footer from '@/components/ui/Footer';
 
@@ -65,33 +66,11 @@ export default function ProjectPage({
           ))}
         </div>
 
-        {/* Galerie — mosaïque en colonnes (masonry), visuels à taille raisonnable */}
+        {/* Galerie — rangées justifiées alignées + lightbox au clic */}
         {project.gallery.length > 0 && (
           <section className="mt-28">
             <Reveal className="caps mb-8 text-[10px] text-ink/40">Aperçu</Reveal>
-            <div
-              className={`gap-5 [column-fill:_balance] ${
-                project.gallery.length >= 5
-                  ? 'columns-2 md:columns-3'
-                  : 'columns-1 sm:columns-2'
-              }`}
-            >
-              {project.gallery.map((src, i) => (
-                <Reveal
-                  key={src}
-                  as="figure"
-                  delay={(i % 3) * 80}
-                  className="mb-5 overflow-hidden break-inside-avoid"
-                >
-                  <img
-                    src={src}
-                    alt={`${project.title} — ${i + 1}`}
-                    loading="lazy"
-                    className="w-full transition-transform duration-700 hover:scale-[1.03]"
-                  />
-                </Reveal>
-              ))}
-            </div>
+            <ProjectGallery title={project.title} items={project.gallery} />
           </section>
         )}
 

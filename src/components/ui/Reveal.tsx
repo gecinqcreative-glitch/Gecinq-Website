@@ -10,11 +10,13 @@ export default function Reveal({
   children,
   delay = 0,
   className = '',
+  style,
   as: Tag = 'div',
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
+  style?: React.CSSProperties;
   as?: 'div' | 'figure' | 'p' | 'section';
 }) {
   const ref = useRef<HTMLElement>(null);
@@ -41,7 +43,7 @@ export default function Reveal({
       // @ts-expect-error — ref polymorphe simple
       ref={ref}
       className={`reveal ${visible ? 'is-visible' : ''} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: `${delay}ms`, ...style }}
     >
       {children}
     </Tag>

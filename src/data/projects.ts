@@ -1,3 +1,5 @@
+export type GalleryItem = { src: string; r: number }; // r = largeur / hauteur
+
 export type Project = {
   slug: string;
   title: string;
@@ -8,13 +10,16 @@ export type Project = {
   video?: string;
   intro: string; // paragraphe d'accroche
   body?: string[]; // corps de texte (paragraphes suivants)
-  gallery: string[];
+  gallery: GalleryItem[];
   nextSlug: string;
 };
 
 const cover = (slug: string) => `/projects/${slug}/cover.jpg`;
 const shot = (slug: string, n: number) =>
   `/projects/${slug}/${String(n).padStart(2, '0')}.jpg`;
+// [numéro, ratio l/h] → item de galerie (le ratio aligne les rangées sans recadrer)
+const shots = (slug: string, list: [number, number][]) =>
+  list.map(([n, r]) => ({ src: shot(slug, n), r }));
 
 export const PROJECTS: Project[] = [
   {
@@ -31,7 +36,12 @@ export const PROJECTS: Project[] = [
       'Cette identité a ensuite été déclinée sur plusieurs formats, notamment un magazine, des affiches de concours, un site web ainsi que des publications et stories pour les réseaux sociaux, afin de construire un univers cohérent, reconnaissable et adapté au digital.',
       'Ce projet est entièrement fictif et a été réalisé dans le cadre d’un exercice de design graphique.',
     ],
-    gallery: [1, 2, 3, 4].map((n) => shot('facet-bloom', n)),
+    gallery: shots('facet-bloom', [
+      [1, 1.77],
+      [2, 1.44],
+      [3, 0.8],
+      [4, 0.66],
+    ]),
     nextSlug: 'map-ch',
   },
   {
@@ -47,9 +57,10 @@ export const PROJECTS: Project[] = [
       'Pour chaque client — OliMandats, Espace Pro Piscine, Seic, Swisspeaks… — on décline une identité en supports concrets : publications social media, visuels pédagogiques (« comment ça marche »), pages web et gabarits réutilisables.',
       'L’approche privilégie la lisibilité et la constance : un système graphique simple, des couleurs franches et des mises en page modulables, pour que la marque reste reconnaissable sur tous les canaux.',
     ],
-    gallery: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) =>
-      shot('map-ch', n),
-    ),
+    gallery: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => ({
+      src: shot('map-ch', n),
+      r: 1,
+    })),
     nextSlug: 'flirtyiq',
   },
   {
@@ -64,7 +75,10 @@ export const PROJECTS: Project[] = [
     body: [
       'Une dizaine de publications Instagram ont été conçues pour transmettre les informations de manière claire, dynamique et accessible. Six templates personnalisables ont également été créés afin de permettre à l’équipe de produire facilement et de manière autonome de nouveaux contenus, tout en conservant une identité visuelle reconnaissable et cohérente.',
     ],
-    gallery: [1, 2, 3, 4, 5, 6].map((n) => shot('flirtyiq', n)),
+    gallery: [1, 2, 3, 4, 5, 6].map((n) => ({
+      src: shot('flirtyiq', n),
+      r: 0.8,
+    })),
     nextSlug: 'fva',
   },
   {
@@ -80,7 +94,13 @@ export const PROJECTS: Project[] = [
       'Le concept graphique repose sur un pictogramme mêlant une route et un tournesol. La route symbolise le parcours, les difficultés traversées et le chemin vers un nouvel équilibre, tandis que le tournesol représente l’épanouissement, le renouveau et l’espoir après les épreuves.',
       'Cette identité a ensuite été développée sur différents supports, notamment un site web, des affiches, une charte graphique et des cartes de visite, afin de construire un univers cohérent, accessible et rassurant.',
     ],
-    gallery: [1, 2, 3, 4, 5].map((n) => shot('fva', n)),
+    gallery: shots('fva', [
+      [1, 1.5],
+      [2, 1.5],
+      [3, 1.5],
+      [4, 0.8],
+      [5, 1.5],
+    ]),
     nextSlug: 'app',
   },
   {
@@ -96,7 +116,13 @@ export const PROJECTS: Project[] = [
       'Le concept graphique s’est développé autour de la sauce, élément central de la gastronomie et symbole de créativité, de mouvement et de gourmandise. Ses formes fluides ont permis de construire un univers visuel élégant, vivant et facilement reconnaissable.',
       'L’identité a ensuite été déclinée sur différents supports, notamment des affiches, des contenus pour les réseaux sociaux ainsi qu’un système de signalétique destiné à faciliter l’orientation des visiteurs au sein du festival.',
     ],
-    gallery: [1, 2, 3, 4, 5].map((n) => shot('app', n)),
+    gallery: shots('app', [
+      [1, 1.5],
+      [2, 1.37],
+      [3, 0.97],
+      [4, 0.8],
+      [5, 1.15],
+    ]),
     nextSlug: 'isao-mudac',
   },
   {

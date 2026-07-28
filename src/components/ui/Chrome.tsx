@@ -22,9 +22,9 @@ export default function Chrome() {
       {/* grain filmique subtil */}
       <div className="grain absolute inset-0" />
 
-      {/* micro-label bas-gauche (accueil uniquement) */}
+      {/* micro-label bas-gauche (accueil uniquement, masqué sur mobile) */}
       {home && (
-        <div className="absolute bottom-4 left-4 text-[9px] uppercase leading-relaxed tracking-[0.16em] text-ink/35 sm:bottom-5 sm:left-7 sm:text-[10px]">
+        <div className="absolute bottom-5 left-7 hidden text-[10px] uppercase leading-relaxed tracking-[0.16em] text-ink/35 sm:block">
           <div>Lausanne — CH</div>
           <div>© 2026 Gecinq Creative</div>
         </div>
