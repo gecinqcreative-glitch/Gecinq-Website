@@ -63,7 +63,7 @@ export const GALLERY = {
     resumeDelay: 900, // ms avant reprise de l'auto après survol / scroll manuel
     dim: 0.42, // luminosité des AUTRES tuiles quand une est survolée (≈ overlay ~58%)
     wheelSens: 0.00035, // sensibilité de la molette (scroll manuel — bien plus lent)
-    touchSens: 0.006, // sensibilité du drag tactile (mobile) — doux et contrôlable
+    touchSens: 0.0025, // sensibilité du drag tactile (mobile) — très doux (≈ 1 tuile par grand swipe)
     decay: 0.85, // inertie du scroll manuel (plus petit = s'arrête plus vite)
     parallaxX: 0.55, // amplitude parallaxe caméra à la souris (horizontal)
     parallaxY: 0.35, // amplitude parallaxe caméra à la souris (vertical)
