@@ -182,17 +182,17 @@ export default function Gallery({ onSelect }: { onSelect: SelectFn }) {
       velocity.current += e.deltaY * GALLERY.auto.wheelSens;
       bump();
     };
-    let lastY: number | null = null;
-    const onTouchStart = (e: TouchEvent) => (lastY = e.touches[0].clientY);
+    let lastX: number | null = null;
+    const onTouchStart = (e: TouchEvent) => (lastX = e.touches[0].clientX);
     const onTouchMove = (e: TouchEvent) => {
-      if (lastY === null) return;
-      const y = e.touches[0].clientY;
-      // sens INVERSÉ sur tactile : glisser vers le bas = avancer dans le couloir
-      velocity.current += (y - lastY) * GALLERY.auto.touchSens;
-      lastY = y;
+      if (lastX === null) return;
+      const x = e.touches[0].clientX;
+      // drag HORIZONTAL sur tactile : glisser vers la gauche = avancer (carrousel)
+      velocity.current += (lastX - x) * GALLERY.auto.touchSens;
+      lastX = x;
       bump();
     };
-    const onTouchEnd = () => (lastY = null);
+    const onTouchEnd = () => (lastX = null);
     // souris normalisée (-1..1) pour le parallaxe
     const onMouseMove = (e: MouseEvent) => {
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
