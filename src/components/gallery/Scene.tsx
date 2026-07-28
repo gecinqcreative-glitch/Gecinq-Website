@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import type { Project } from "@/data/projects";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import Gallery from "./Gallery";
 import Effects from "./Effects";
 import Overlay from "./Overlay";
@@ -13,10 +14,11 @@ import StaticFallback from "./StaticFallback";
 /**
  * Immersive 3D project gallery.
  * - Default: WebGL bowl-grid (drag, inertia, infinite scroll, hover video).
- * - prefers-reduced-motion: static scrollable poster grid.
+ * - Touch / small screens & prefers-reduced-motion: native-scrolling poster grid.
  */
 export default function Scene() {
   const reduced = useReducedMotion();
+  const mobile = useIsMobile();
   const [hovered, setHovered] = useState<Project | null>(null);
   // shared 0→1 pan-speed signal: Gallery writes it, Effects reads it for blur
   const motion = useRef(0);
@@ -26,7 +28,8 @@ export default function Scene() {
     return (navigator.hardwareConcurrency || 8) >= 4;
   });
 
-  if (reduced) return <StaticFallback />;
+  // The 3D gallery relies on hover; on touch / small screens serve the grid.
+  if (reduced || mobile) return <StaticFallback />;
 
   return (
     <>

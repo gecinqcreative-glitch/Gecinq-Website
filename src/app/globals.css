@@ -33,7 +33,7 @@ body {
 .stage {
   position: fixed;
   inset: 0;
-  width: 100vw;
+  width: 100%;
   height: 100dvh;
   touch-action: none; /* let us drive drag on touch */
 }
@@ -186,6 +186,22 @@ body {
 @keyframes hintFade {
   to {
     opacity: 0;
+  }
+}
+
+/* honor notch/safe areas for the fixed overlay chrome */
+.ov-top {
+  padding-top: max(1.4rem, env(safe-area-inset-top));
+  padding-left: max(1.6rem, env(safe-area-inset-left));
+  padding-right: max(1.6rem, env(safe-area-inset-right));
+}
+
+/* narrow desktop windows (touch devices already get the scrolling grid):
+   drop the side chrome so the centered nav pill never collides */
+@media (max-width: 900px) {
+  .ov-bl,
+  .ov-filter {
+    display: none;
   }
 }
 
@@ -343,25 +359,34 @@ body {
   position: fixed;
   inset: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  padding: 0 1.5rem 4rem;
+  /* room at the bottom for the floating nav pill + the phone's home indicator */
+  padding: 0 clamp(1rem, 5vw, 1.5rem)
+    calc(6rem + env(safe-area-inset-bottom));
+  padding-left: max(clamp(1rem, 5vw, 1.5rem), env(safe-area-inset-left));
+  padding-right: max(clamp(1rem, 5vw, 1.5rem), env(safe-area-inset-right));
   background: #000;
 }
 .fb-top {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.4rem 0;
+  padding: calc(1.1rem + env(safe-area-inset-top)) 0 1.1rem;
+  background: linear-gradient(#000 65%, transparent);
 }
 .fb-h1 {
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: clamp(1.8rem, 8vw, 4rem);
   font-weight: 700;
-  margin: 2rem 0 2.5rem;
+  margin: 1rem 0 1.8rem;
 }
 .fb-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: clamp(0.7rem, 3vw, 1rem);
 }
 .fb-card {
   position: relative;
@@ -398,13 +423,48 @@ body {
   font-weight: 700;
 }
 
+/* floating bottom nav for the mobile grid (mirrors the desktop overlay pill) */
+.fb-nav {
+  position: fixed;
+  left: 50%;
+  bottom: calc(0.9rem + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.35rem;
+  background: rgba(20, 20, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 999px;
+  font-family: var(--font-geist-mono), ui-monospace, Menlo, monospace;
+}
+.fb-nav a {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+}
+.fb-nav a.on {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
 /* ------------------------------------------------------------------ */
 /* Project detail page                                                  */
 /* ------------------------------------------------------------------ */
+/* body is overflow:hidden, so this needs its own scroll container (fixed +
+   overflow) — a plain min-height block would be clipped and unscrollable. */
 .work {
-  min-height: 100dvh;
+  position: fixed;
+  inset: 0;
   overflow-y: auto;
-  padding: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: calc(1.5rem + env(safe-area-inset-top)) 1.5rem
+    calc(2.5rem + env(safe-area-inset-bottom));
   background: #000;
 }
 .work-back {
@@ -457,10 +517,14 @@ body {
   position: fixed;
   inset: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   background: #000;
   color: #fff;
-  padding: 1.4rem clamp(1.25rem, 6vw, 6rem) 6rem;
+  padding: calc(1.4rem + env(safe-area-inset-top))
+    max(clamp(1.25rem, 6vw, 6rem), env(safe-area-inset-right))
+    calc(4rem + env(safe-area-inset-bottom))
+    max(clamp(1.25rem, 6vw, 6rem), env(safe-area-inset-left));
 }
 .page > * {
   max-width: 1080px;

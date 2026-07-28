@@ -5,9 +5,10 @@ import { projects } from "@/data/projects";
 import Logo from "./Logo";
 
 /**
- * prefers-reduced-motion fallback: a plain scrollable poster grid.
- * No WebGL, no autoplay — just posters (with an accent background behind them
- * in case the image is missing). Same routing to /work/[slug].
+ * Native-scrolling poster grid served on touch / small screens and for
+ * prefers-reduced-motion. No WebGL, no autoplay — just posters (with an accent
+ * background behind them in case the image is missing). Same routing to
+ * /work/[slug], plus a bottom nav pill so About/Contact stay reachable.
  */
 export default function StaticFallback() {
   return (
@@ -46,6 +47,15 @@ export default function StaticFallback() {
           </a>
         ))}
       </div>
+
+      {/* bottom nav — mirrors the desktop overlay pill */}
+      <nav className="fb-nav">
+        <Link className="on" href="/">
+          Work
+        </Link>
+        <Link href="/about">About</Link>
+        <Link href="/contact">Contact</Link>
+      </nav>
     </div>
   );
 }
