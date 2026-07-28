@@ -96,7 +96,7 @@ export const PROJECTS: Project[] = [
       'Le concept graphique s’est développé autour de la sauce, élément central de la gastronomie et symbole de créativité, de mouvement et de gourmandise. Ses formes fluides ont permis de construire un univers visuel élégant, vivant et facilement reconnaissable.',
       'L’identité a ensuite été déclinée sur différents supports, notamment des affiches, des contenus pour les réseaux sociaux ainsi qu’un système de signalétique destiné à faciliter l’orientation des visiteurs au sein du festival.',
     ],
-    gallery: [1, 2].map((n) => shot('app', n)),
+    gallery: [1, 2, 3, 4, 5].map((n) => shot('app', n)),
     nextSlug: 'isao-mudac',
   },
   {

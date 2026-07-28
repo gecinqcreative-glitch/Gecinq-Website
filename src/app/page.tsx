@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import IndexView from '@/components/ui/IndexView';
 import Magnetic from '@/components/ui/Magnetic';
+import SwipeHint from '@/components/ui/SwipeHint';
 
 // Scene = WebGL pur → jamais rendu côté serveur
 const Scene = dynamic(() => import('@/components/three/Scene'), { ssr: false });
@@ -31,6 +32,7 @@ export default function Home() {
   return (
     <main className="splash-reveal relative min-h-screen w-full bg-paper">
       {webgl ? <Scene /> : <IndexView />}
+      {webgl && <SwipeHint />}
 
       {/* CTA proéminent + magnétique */}
       <Magnetic className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">

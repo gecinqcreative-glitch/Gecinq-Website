@@ -1,8 +1,9 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
+import * as THREE from 'three';
 import { GALLERY } from '@/config/gallery';
 import {
   startProjectTransition,
@@ -11,6 +12,29 @@ import {
 import { prefersReducedMotion, isCoarsePointer } from '@/lib/heroLayout';
 import Gallery from './Gallery';
 import type { SelectFn } from './ProjectPlane';
+
+/**
+ * Focale adaptative : la caméra a une focale VERTICALE fixe, donc sur un écran
+ * étroit (mobile portrait) on voit beaucoup moins du couloir en largeur. On
+ * élargit la focale quand l'aspect < 1 pour recadrer un ruban lisible, avec un
+ * plafond pour éviter la déformation « fisheye ». Recalcul à chaque resize/rotation.
+ */
+function ResponsiveCamera() {
+  const camera = useThree((s) => s.camera) as THREE.PerspectiveCamera;
+  const size = useThree((s) => s.size);
+  useEffect(() => {
+    const aspect = size.width / size.height;
+    const fov =
+      aspect >= 1
+        ? GALLERY.fov
+        : THREE.MathUtils.clamp((GALLERY.fov / aspect) * 0.82, GALLERY.fov, 64);
+    if (Math.abs(camera.fov - fov) > 0.01) {
+      camera.fov = fov;
+      camera.updateProjectionMatrix();
+    }
+  }, [camera, size.width, size.height]);
+  return null;
+}
 
 /** Galerie 3D plein écran. Au clic : dolly caméra vers la tuile (cf. Rig) puis crossfade. */
 export default function Scene() {
@@ -48,6 +72,7 @@ export default function Scene() {
           attach="fog"
           args={[GALLERY.fog.color, GALLERY.fog.near, GALLERY.fog.far]}
         />
+        <ResponsiveCamera />
         <Suspense fallback={null}>
           <Gallery onSelect={handleSelect} />
         </Suspense>

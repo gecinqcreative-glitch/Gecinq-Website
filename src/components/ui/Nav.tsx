@@ -25,7 +25,7 @@ export default function Nav() {
           <img
             src="/logo-white.png"
             alt="GECINQ CREATIVE"
-            className="h-24 w-auto sm:h-28 md:h-40"
+            className="h-16 w-auto sm:h-24 md:h-40"
           />
         </Link>
         {/* Liens desktop */}
