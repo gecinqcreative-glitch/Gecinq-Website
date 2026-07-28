@@ -31,7 +31,7 @@ export const PROJECTS: Project[] = [
       'Cette identité a ensuite été déclinée sur plusieurs formats, notamment un magazine, des affiches de concours, un site web ainsi que des publications et stories pour les réseaux sociaux, afin de construire un univers cohérent, reconnaissable et adapté au digital.',
       'Ce projet est entièrement fictif et a été réalisé dans le cadre d’un exercice de design graphique.',
     ],
-    gallery: [1, 2, 3].map((n) => shot('facet-bloom', n)),
+    gallery: [1, 2, 3, 4].map((n) => shot('facet-bloom', n)),
     nextSlug: 'map-ch',
   },
   {
@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
       'Le concept graphique repose sur un pictogramme mêlant une route et un tournesol. La route symbolise le parcours, les difficultés traversées et le chemin vers un nouvel équilibre, tandis que le tournesol représente l’épanouissement, le renouveau et l’espoir après les épreuves.',
       'Cette identité a ensuite été développée sur différents supports, notamment un site web, des affiches, une charte graphique et des cartes de visite, afin de construire un univers cohérent, accessible et rassurant.',
     ],
-    gallery: [1, 2, 3, 4].map((n) => shot('fva', n)),
+    gallery: [1, 2, 3, 4, 5].map((n) => shot('fva', n)),
     nextSlug: 'app',
   },
   {

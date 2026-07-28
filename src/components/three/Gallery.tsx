@@ -33,17 +33,25 @@ const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3);
  */
 function Rig({ nav }: { nav: Nav }) {
   const { camera } = useThree();
+  const size = useThree((s) => s.size);
   const t = useTransition();
   const zooming = t.phase === 'active' && t.mode === 'zoom' && !!t.camPos;
-  const base = useMemo(
-    () =>
-      new THREE.Vector3(
-        GALLERY.camOffset.x,
-        GALLERY.camOffset.y,
-        GALLERY.camOffset.z,
-      ),
-    [],
-  );
+  // cadrage responsive : en PORTRAIT (mobile) la caméra recule et se recentre
+  // sur le couloir pour que le ruban reste lisible dans un cadre étroit.
+  const base = useMemo(() => {
+    const portrait = size.width / size.height < 1;
+    return portrait
+      ? new THREE.Vector3(
+          GALLERY.camOffset.x - 0.7,
+          GALLERY.camOffset.y - 0.25,
+          GALLERY.camOffset.z + 0.6,
+        )
+      : new THREE.Vector3(
+          GALLERY.camOffset.x,
+          GALLERY.camOffset.y,
+          GALLERY.camOffset.z,
+        );
+  }, [size.width, size.height]);
   const camTarget = useRef(new THREE.Vector3()).current;
 
   // cibles + point de départ du dolly (capturés au 1er frame de zoom)
