@@ -150,6 +150,26 @@ export const PROJECTS: Project[] = [
     intro:
       'GoodLo — direction motion pour les réseaux. Follow the flow : rythme, gradients et transitions léchées.',
     gallery: [],
+    nextSlug: 'poz',
+  },
+  {
+    slug: 'poz',
+    title: 'POZ',
+    category: 'Design d’espace / 3D',
+    year: '2025',
+    cover: cover('poz'),
+    ratio: 1.78,
+    intro:
+      'POZ est un concept de micro-architecture dédié à la pause : une capsule aux formes douces où l’on s’allonge, coupé du bruit, le temps de recharger. Pensée pour s’installer n’importe où — prairie, rive, ville — elle abrite un filet suspendu entouré de végétation.',
+    body: [
+      'Deux ambiances lumineuses rythment l’expérience : une lumière chaude et enveloppante pour la détente, une lumière bleutée et tamisée pour la nuit. L’intérieur en bois et textile crée un cocon acoustique propice au lâcher-prise.',
+      'Le projet couvre l’ensemble de la démarche : conception de la structure, identité visuelle et charte graphique, rendus et animations 3D, jusqu’à la maquette d’une application dédiée.',
+    ],
+    gallery: shots('poz', [
+      [1, 1.78],
+      [2, 1.78],
+      [3, 1.78],
+    ]),
     nextSlug: 'facet-bloom',
   },
 ];
